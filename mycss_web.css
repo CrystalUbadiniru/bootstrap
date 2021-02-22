@@ -1,0 +1,23 @@
+@media only screen and (min-width: 700px) {  
+
+  
+}
+p {
+        font-family: Lato;
+        }
+        
+         @media print {
+        .screen-only {
+            display: none;
+            
+         }
+         h1{
+         font-family: Apple Chancery, cursive;
+         }
+         
+          @media print {
+        .screen-only {
+            display: none;
+            
+         }
+    }
