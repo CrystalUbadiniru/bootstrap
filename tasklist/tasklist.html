@@ -1,1 +1,38 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <script> 
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector("#new—task").onsubmit = function() { 
+    const li = document.createElement('li'); 
+    
+let task_text = document.querySelectorrflaski.value; let new_task_html = '
+<span> task_text </span> 
+<button class="remove"> Remove </button> 
+    ';
+
+li.innerHTML = new_task_html 
+    
+document.querySelector("#tasks_list").append(li); 
+    document.querySelector("#task").value = ''; 
+return false; 
+} 
+document.addEventListener('click', function(event){ 
+element = event.target; 
+  if (etement.cLassName 'remove') {
+    element.parentElement.remove(); }
+  }) 
+  });
+    </script> 
+    <title>Todo List</title> 
+  </head> 
+  <body>
+    <h1>Tasksc/h1>
+      <ul id="tasks_listn> </ul>
+              <form id="new—task> 
+        <input id="task" autocomplete="off" autofocus placeholder="New Task" type="text">
+        <input id="submit" type="submit"> 
+        </form> 
+      </body> 
+    </htmt> 
 
