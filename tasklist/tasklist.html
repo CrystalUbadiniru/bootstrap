@@ -22,6 +22,11 @@ li.innerHTML = new_task_html
     return false;
 
   }
+document.addEventListener('click', function(event){ 
+  element = event.target; 
+if (element.cLassName=== 'remove') {
+      element.parentElement.remove(); 
+}
 
   });
     </script>
