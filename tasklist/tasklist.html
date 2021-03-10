@@ -108,13 +108,10 @@ input {
 }
   /* Style the "priorities" button */
 .label {
-   margin: 0;
-  border: none;
-  border-radius: 0;
-  width: 75%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
+   background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
    }
 /* Style the "Add" button */
 .addBtn {
@@ -142,8 +139,6 @@ input {
 <div id="myDIV" class="header">
   <h2 style="margin:5px">My To Do List</h2>
   <input type="text" id="myInput" placeholder="Title...">
-  <span onclick="newElement()" class="addBtn">Add</span>
-</div>
 
 <label class="label">Priority</label><br />
 <select>
@@ -152,9 +147,9 @@ input {
 <option value = "high">High</option>
 </select>
 </br/>
+  <span onclick="newElement()" class="addBtn">Add</span>
 
 </div>
-<button id="add_task">Add Task</button>
 </form>
 <ul id="myUL">
   <li>Hit the gym</li>
