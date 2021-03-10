@@ -35,9 +35,16 @@
    font-size: 1.8rem;
    }
    #add_task{
-   margin-top: 5px;
-   margin-bottom: 3px;
-   padding: 3px 7px;
+   padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
    }
    #tasks{
    margin: 20px 30px;
@@ -85,8 +92,8 @@ ul li {
 
 <body>
 <form>
-<h1>Add New Task</h1>
-<label class="label" for="title">Title </label><br />
+<h1>Tasklist</h1>
+<label class="label" for="title">Title... </label><br />
 <input id="title" required></input><br />
 <label class="label">Priority</label><br />
 <select>
@@ -95,14 +102,8 @@ ul li {
 <option value = "high">High</option>
 </select>
 </br/>
-<label class="label"> Status </label>
-<div>
-<input type="radio" id="pending" name="status" value="pending" checked>
-<label for="pending">Pending</label>
-<input type="radio" id="completed" name="status" value="completed">
-<label for="completed">Completed</label>
-</div>
-<button id="add_task">Add Task</button>
+
+<button id="add_task">Add </button>
 </form>
 <div id="tasks">
 <h1>All Tasks</h1>
