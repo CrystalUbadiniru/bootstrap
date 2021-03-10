@@ -1,55 +1,88 @@
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");https://github.com/CrystalUbadiniru/bootstrap/blob/main/tasklist/myjavascript.js
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
+var task_array = []
+
+
+/*Function to Create Unordered List from Task Array
+It first removes all the element present in the Unordered Node
+and then insert each element of task_array into List
+*/
+function create_list() {
+var ul_element = document.querySelector("#all_tasks");
+
+/*Removing already present child elements from ul*/
+while (ul_element.firstChild) {
+ul_element.removeChild(ul_element.firstChild);
 }
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
+/*Inserting Elements from task_array*/
+for (var i = 0; i < task_array.length; i++) {
+var li = document.createElement("li"); /*li Element*/
+var checkbox = document.createElement("INPUT"); /*Checkbox in Li element*/
+checkbox.setAttribute("type", "checkbox");
+checkbox.onclick = markComplete;
+if (task_array[i].status === "completed") {
+li.classList.add("completed");
+checkbox.checked = true;
+}
+if (task_array[i].priority === "high")
+{
+li.style.color = "red";
+}
+else if(task_array[i].priority === "medium")
+{
+li.style.color = "orange";
+}
+else
+{
+li.style.color = "green";
+}
+li.innerHTML = task_array[i].title;
+li.insertBefore(checkbox, li.firstChild);
+li.setAttribute("id", task_array[i].title)
+var button = document.createElement("button");
+button.classList.add("remove_task");
+button.onclick = RemoveTask;
+button.innerText = "✖";
+li.appendChild(button);
+ul_element.appendChild(li);
+}
 }
 
-// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
 
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
+/*Function to addElement in the array and then make ul from that*/
+document.querySelector("#add_task").addEventListener("click", function(e) {
+var title = document.querySelector("#title").value;
+var priority = document.querySelector("form select").value;
+if (document.querySelector("#pending").checked)
+var status = "pending";
+else
+var status = "completed";
+task_array.push({
+title: title,
+priority: priority,
+status: status
+})
+create_list();
+e.preventDefault();
+})
 
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
 
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
+/*Function to remove element from the list. This removes element from the array which when rendered again removes item from list.*/
+function RemoveTask(e) {
+var id = e.target.parentElement.id;
+task_array = task_array.filter(data => data.title != id);
+create_list();
+e.preventDefault();
 }
+
+/*Function to mark Complete*/
+function markComplete(e) {
+var id = e.target.parentElement.id;
+task_array = task_array.map(x => {
+if (x.title === id) x.status = "completed";
+return x;
+})
+create_list();
+}
+create_list();
+
+
